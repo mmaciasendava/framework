@@ -1,24 +1,11 @@
 pipeline {
     agent {
-        docker {
-            image 'maven:3-alpine'
-            args '-v $HOME/.m2:/root/.m2'
-        }
+        docker { image 'node:7-alpine' }
     }
     stages {
-        stage('Build') {
-            steps {
-                sh 'mvn -B -DskipTests clean install'
-            }
-        }
         stage('Test') {
             steps {
-                sh 'mvn clean verify'
-            }
-            post {
-                always {
-                    junit '/var/jenkins_home/workspace/AutomationFW/target/failsafe-reports/*.xml'
-                }
+                sh 'node --version'
             }
         }
     }
