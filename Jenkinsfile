@@ -1,7 +1,8 @@
 pipeline {
     agent {
-        dockerNode(image: 'maven:3-alpine', sideContainers: ['']) {
-            args '-v /root/.m2:/root/.m2'
+        docker {
+            image 'maven:3-alpine'
+            args '-v $HOME/.m2:/root/.m2'
         }
     }
     stages {
