@@ -17,7 +17,7 @@ pipeline {
             }
             post {
                 always {
-                    junit '/var/jenkins_home/workspace/AutomationFW/target/surefire-reports/*.xml'
+                    junit '/var/jenkins_home/workspace/AutomationFW/target/failsafe-reports/*.xml'
                 }
             }
         }
