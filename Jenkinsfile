@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     tools {
         maven 'maven3'
     }
@@ -17,7 +17,7 @@ pipeline {
             }
             post {
                 always {
-                    junit '/var/jenkins_home/workspace/AutomationFW/target/failsafe-reports/*.xml'
+                    junit '/Users/mmacias/.jenkins/workspace/AutomationFW/target/failsafe-reports/*.xml'
                 }
             }
         }
