@@ -17,8 +17,8 @@ pipeline {
             }
             post {
                 always {
-                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'publishHTML', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
-                    junit allowEmptyResults: true, testResults: '/Users/mmacias/.jenkins/workspace/AutomationFW/target/failsafe-reports/*.xml'
+                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'publishHTML', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+                    junit allowEmptyResults: true, testResults: '/Users/mmacias/.jenkins/workspace/AutomationFW/target/surefire-reports/*.xml'
                 }
             }
         }
