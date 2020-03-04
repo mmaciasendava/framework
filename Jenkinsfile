@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean install'
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'mmaciasendava', url: 'https://github.com/mmaciasendava/framework/']]])
+                echo 'mvn -B -DskipTests clean install'
             }
         }
         stage('Test') {
