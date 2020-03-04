@@ -14,6 +14,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'mvn clean verify'
+                sh 'mvn serenity:aggregate'
             }
             post {
                 always {
