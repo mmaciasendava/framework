@@ -18,7 +18,8 @@ pipeline {
             }
             post {
                 always {
-                    junit '/Users/mmacias/.jenkins/workspace/AutomationFW/target/failsafe-reports/*.xml'
+                    junit allowEmptyResults: true, testResults: '/Users/mmacias/.jenkins/workspace/AutomationFW/target/failsafe-reports/*.xml'
+                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target/publishHTML', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
                 }
             }
         }
