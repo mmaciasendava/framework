@@ -14,10 +14,10 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'mvn clean verify'
-                sh 'mvn serenity:aggregate'
             }
             post {
                 always {
+                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'publichHTML', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
                     junit allowEmptyResults: true, testResults: '/Users/mmacias/.jenkins/workspace/AutomationFW/target/failsafe-reports/*.xml'
                 }
             }
