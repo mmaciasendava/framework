@@ -1,16 +1,19 @@
 pipeline {
-    agent any
-
+    agent {
+        docker {
+            image 'maven:3-alpine'
+            args '-v $HOME/.m2:/root/.m2'
+        }
+    }
     tools {
+        jdk 'jdk8'
         maven 'maven3'
-        docker 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
     }
 
     stages {
         stage('Build') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'mmaciasendava', url: 'https://github.com/mmaciasendava/framework/']]])
-                echo 'mvn -B -DskipTests clean install'
+                sh 'mvn -B -DskipTests clean install'
             }
         }
         stage('Test') {
