@@ -12,7 +12,8 @@ pipeline {
             }
             post {
                 always {
-                    junit allowEmptyResults: true, testResults: 'target/**/*.xml'
+                    publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'target/site/serenity/', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+                    junit allowEmptyResults: true, testResults: 'target/**/*JUNIT*.xml'
                 }
             }
         }
