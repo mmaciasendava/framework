@@ -6,12 +6,7 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
-            steps {
-                sh 'mvn -B -DskipTests clean install'
-            }
-        }
-        stage('Test') {
+        stage('Run Tests') {
             steps {
                 sh 'mvn clean verify'
                 sh 'mvn serenity:aggregate'
